@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MenuService {
 
@@ -20,7 +22,7 @@ public class MenuService {
     }
 
     public MenuDTO findMenuByMenuCode(int menuCode) {
-        Menu menu = menuRepository.selectMenu(menuCode);
+        Optional<Menu> menu = menuRepository.findById(menuCode);
         return modelMapper.map(menu, MenuDTO.class);
     }
 }
